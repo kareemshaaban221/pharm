@@ -1,0 +1,27 @@
+<div class="login-banner">
+  <div class="login-container">
+    <div class="container">
+      <div class="row pt-5 justify-content-around me-2 ms-2">
+        <div class="col-md-6 col-12 border border-light rounded p-3">
+          <h1 class="text-center">تسجيل الدخول</h1>
+          <form (submit)="login()">
+            <div class="form-group">
+              <label for="email">البريد الالكتروني</label>
+              <input type="text" class="form-control" [ngClass]="email.invalid && email.touched ? 'invalid' : ''" [formControl]="email" required>
+            </div>
+            <div class="form-group">
+              <label for="password">كلمة المرور</label>
+              <input type="text" class="form-control" [ngClass]="password.invalid && password.touched ? 'invalid' : ''" [formControl]="password" required>
+            </div>
+            <div class="form-group mt-3">
+              <button type="submit" class="btn btn-light">تسجيل الدخول</button>
+            </div>
+            <ul class="mb-0 mt-3" *ngIf="errors != []">
+              <li class="text-danger" *ngFor="let error of errors | keyvalue">{{error.value}}</li>
+            </ul>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
