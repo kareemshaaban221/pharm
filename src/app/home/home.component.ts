@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Auth } from '../models/auth';
-import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -8,14 +8,17 @@ import { Location } from '@angular/common';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  auth: Auth = localStorage.getItem('auth') ? JSON.parse(localStorage.getItem('auth') ?? '{}') : new Auth();
+  auth: Auth = Auth.getInstance();
 
   constructor(
-    location: Location) {
-    console.log(this.auth);
-
-    if (this.auth.isEmpty()) {
-      location.back();
+    public router: Router) {
+    if (!Auth.check()) {
+      this.router.navigateByUrl('login');
     }
+  }
+
+  logout() {
+    this.auth.logout();
+    this.router.navigateByUrl('login');
   }
 }

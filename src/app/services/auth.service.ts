@@ -18,6 +18,8 @@ export class AuthService {
     public http: HttpClient) { }
 
   authenticate(request: IBaseRequest): Observable<Auth|Response> {
+    console.log(request.toObject());
+
     return this.http.post<Auth|Response>(request.getUrl(this.url), request.toObject());
   }
 }

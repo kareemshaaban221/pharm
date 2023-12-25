@@ -1,11 +1,12 @@
 import { Injectable } from "@angular/core";
 import { FormControl } from "@angular/forms";
 import { IBaseRequest } from "./ibase.request";
+import { IFormRequest } from "./iform.request";
 
 @Injectable({
   providedIn: 'root'
 })
-export class LoginRequest implements IBaseRequest {
+export class LoginRequest implements IBaseRequest, IFormRequest {
 
   constructor(
     private email: FormControl,

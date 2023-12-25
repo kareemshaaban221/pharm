@@ -15,10 +15,13 @@
             </div>
             <div class="form-group mt-3">
               <button type="submit" class="btn btn-light">تسجيل الدخول</button>
+              <a class="link link-light me-3" routerLink="/register">ليس لديك حساب؟</a>
             </div>
-            <ul class="mb-0 mt-3" *ngIf="errors != []">
-              <li class="text-danger" *ngFor="let error of errors | keyvalue">{{error.value}}</li>
-            </ul>
+            <div class="mb-0 mt-3 alert alert-danger opacity-75" *ngIf="showErrors">
+              <ul class="m-0">
+                <li class="text-danger" *ngFor="let error of errors | keyvalue">{{error.value}}</li>
+              </ul>
+            </div>
           </form>
         </div>
       </div>

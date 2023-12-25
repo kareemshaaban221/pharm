@@ -1,18 +1,16 @@
 import { Injectable } from "@angular/core";
 import { FormControl } from "@angular/forms";
 import { IBaseRequest } from "./ibase.request";
+import { IFormRequest } from "./iform.request";
 
-@Injectable({
-  providedIn: 'root'
-})
-export class RegisterRequest implements IBaseRequest {
+export class RegisterRequest implements IBaseRequest, IFormRequest {
 
   constructor(
-    private email: FormControl,
-    private password: FormControl) { }
+    private formControls: FormControl[]) { }
 
   markAsTouched(): void {
-    throw new Error("Method not implemented.");
+    for (let formControl of this.formControls)
+      formControl.markAsTouched();
   }
 
   getUrl(api_url: string): string {
@@ -20,13 +18,39 @@ export class RegisterRequest implements IBaseRequest {
   }
 
   isValid(): boolean {
-    return this.email.valid && this.password.valid;
+    let valid = true;
+    for (let formControl of this.formControls)
+      valid = valid && formControl.valid;
+    return valid;
+  }
+
+  getEmail(): string {
+    return this.formControls[0].value;
+  }
+
+  getPassword(): string {
+    return this.formControls[1].value;
+  }
+
+  getName(): string {
+    return this.formControls[2].value;
+  }
+
+  getPhone(): string {
+    return this.formControls[3].value;
+  }
+
+  getStockId(): string {
+    return this.formControls[4].value;
   }
 
   toObject(): Object {
     return {
-      email: this.email,
-      password: this.password
+      name: this.getName(),
+      email: this.getEmail(),
+      password: this.getPassword(),
+      stock_id: this.getStockId(),
+      phone: this.getPhone()
     };
   }
 }

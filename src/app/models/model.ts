@@ -1,5 +1,5 @@
 export class Model {
-  created_at  : string|undefined;
-  updated_at  : string|undefined;
+  created_at  : Date|undefined;
+  updated_at  : Date|undefined;
   id          : number|undefined;
 }

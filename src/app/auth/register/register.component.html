@@ -1,0 +1,49 @@
+<div class="login-banner">
+  <div class="login-container">
+    <div class="container">
+      <div class="row pt-5 justify-content-around me-2 ms-2">
+        <div class="col-md-6 col-12 border border-light rounded p-3">
+          <h1 class="text-center">تسجيل جديد</h1>
+          <form (submit)="register()">
+            <div class="form-group">
+              <label for="email">اختر المخزن</label>
+              <select class="form-control" [ngClass]="stock.invalid && stock.touched ? 'invalid' : ''" [formControl]="stock" required>
+                <option value="">--</option>
+                <option value="{{stock.id}}" *ngFor="let stock of stocks">{{stock.name}}</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="name">الاسم</label>
+              <input type="text" class="form-control" [ngClass]="name.invalid && name.touched ? 'invalid' : ''" [formControl]="name" required>
+            </div>
+            <div class="form-group">
+              <label for="phone">رقم الهاتف</label>
+              <input type="text" class="form-control" [ngClass]="phone.invalid && phone.touched ? 'invalid' : ''" [formControl]="phone" required>
+            </div>
+            <div class="form-group">
+              <label for="email">البريد الالكتروني</label>
+              <input type="text" class="form-control" [ngClass]="email.invalid && email.touched ? 'invalid' : ''" [formControl]="email" required>
+            </div>
+            <div class="form-group">
+              <label for="password">كلمة المرور</label>
+              <input type="text" class="form-control" [ngClass]="password.invalid && password.touched ? 'invalid' : ''" [formControl]="password" required>
+            </div>
+            <div class="form-group">
+              <label for="password_confirmation">تأكيد كلمة المرور</label>
+              <input type="text" class="form-control" [ngClass]="password_confirmation.invalid && password_confirmation.touched ? 'invalid' : ''" [formControl]="password_confirmation" required>
+            </div>
+            <div class="form-group mt-3">
+              <button type="submit" class="btn btn-light">انشاء <i class="bi bi-send"></i></button>
+              <a class="link link-light me-3" routerLink="/login">لديك حساب بالفعل؟</a>
+            </div>
+            <div class="mb-0 mt-3 alert alert-danger opacity-75" *ngIf="showErrors">
+              <ul class="m-0">
+                <li class="text-danger" *ngFor="let error of errors | keyvalue">{{error.value}}</li>
+              </ul>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
